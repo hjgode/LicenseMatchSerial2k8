@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<versiondates>
+<ITE>
+	<Version Number="1.00.01.0102" Date="NA"         Notes="TE, Grammars.cab, SyVox_Speech_Client.cab, TE_CK3.cab" />
+	<Version Number="1.01.01.0107" Date="10/28/2008" Notes="TE, Grammars.cab, SyVox_Speech_Client.cab, TE_CK3.cab" />
+	<Version Number="1.10.00.0422" Date="10/14/2009" Notes="TE_CK3.cab for CK3B" />
+	<Version Number="1.11.02.0424" Date="10/30/2009" Notes="TE_CK3.cab for CK3B" />
+	<Version Number="1.12.02.0431" Date="01/22/2010" Notes="TE_CK3.cab for CK3B" />
+	<Version Number="1.20.03.0640" Date="06/11/2010" Notes="ITE_WM_ARMV4I.cab for CK3B" />
+	<Version Number="1.21.03.0640" Date="06/11/2010" Notes="ITE_WM_ARMV4I.cab for CK3B" />
+	<Version Number="1.25.04.0200" Date="06/11/2010" Notes="ITE_WM_ARMV4I.cab for CK3B" />
+	<Version Number="1.26.04.0209" Date="06/11/2010" Notes="ITE_WM_ARMV4I.cab for CK3B" />
+	<Version Number="1.28.05.0214" Date="06/11/2010" Notes="ITE_WM_ARMV4I.cab for CK3B" />
+	<Version Number="1.29.05.0230" Date="06/11/2010" Notes="ITE_WM_ARMV4I.cab for CK3B could have issues with SSH" />
+	<Version Number="1.30.06.0632" Date="09/14/2011" Notes="ITE_Other_WM_ARMV4I.cab for CK3B" />
+	<Version Number="1.31.06.0645" Date="11/21/2011" Notes="ITE_Other_WM_ARMV4I.cab for CK3B" />
+	<Version Number="1.31.06.0659" Date="11/21/2011" Notes="ITE 70 series only, Not on download page, address license issue, attached to answer 13404" />
+	<Version Number="1.35.00.1075" Date="04/12/2012" Notes="ITE_Other_WM_ARMV4I.cab for CK3B" />
+	<Version Number="1.36.07.1155" Date="04/12/2012" Notes="ITE_Other_WM_ARMV4I.cab for CK3B" />
+	<Version Number="1.37.07.1222" Date="04/12/2012" Notes="ITE_Other_WM_ARMV4I.cab for CK3B" />
+	<Version Number="1.40.10.0120" Date="06/12/2013" Notes="ITE_Other_WM_ARMV4I.cab for CK3B" />
+	<Version Number="1.41.00.0162" Date="06/12/2013" Notes="ITE_Other_WM_ARMV4I for CN3, CN4, CN50, CS40,CK3- ITE_WM_VGA_WVGA.cab 70 series and CN51" />
+	<Version Number="1.42.01.0203" Date="06/12/2013" Notes="ITE_Other_WM_ARMV4I for CN3, CN4, CN50, CS40,CK3- ITE_WM_VGA_WVGA.cab 70 series and CN51" />
+	<Version Number="1.43.01.0356" Date="06/12/2013" Notes="ITE_Other_WM_ARMV4I for CN3, CN4, CN50, CS40,CK3- ITE_WM_VGA_WVGA.cab 70 series and CN51" />
+  <Version Number="1.91.04.0145" Date="09/04/2016" Notes="ITE V1.91.04.0145  application has license build date of Sept 04, 2016" />
+  <Version Number="1.91.04.0164" Date="09/15/2016" Notes="ITE V1.91.04.0164  application has license build date of Sept 15, 2016" />
+</ITE>
+<IB>
+  <Version Number="1.00.02.0002" Date="01/01/2008" Notes="IB (PIE only) V 1.00.02.0002 application build is around 2008" />
+  <Version Number="1.01.02.0001" Date="06/01/2008" Notes="IB (PIE only) V 1.01.02.0001 application build is around 2008" />
+  <Version Number="1.02.01.0001" Date="04/16/2009" Notes="IB (PIE only) V 1.02.01.0001 application build is around April 16, 2009" />
+  <Version Number="1.03.01.0001" Date="11/04/2009" Notes="IB (PIE only) V 1.03.01.0001 application build is around November 4, 2009" />
+  <Version Number="1.04.01.0065" Date="12/20/2010" Notes="IB (PIE only) V 1.04.01.0065 application has license build date of December 20, 2010." />
+  <Version Number="1.10.02.0106" Date="09/26/2011" Notes="IB (IE6 or PIE)  V 1.10.02.0106 application has license build date of September 26, 2011. This is the last version where IB.INI is used." />
+  <Version Number="1.20.05.0240" Date="01/24/2013" Notes="IB (IE6/PIE configurable) V 1.20.05.0240 application has license build date of January 24, 2013, last version for Mobile 6.1" />
+  <Version Number="2.00.00.0292" Date="03/18/2013" Notes="IB (IE6/PIE/HTML5 configurable) V 2.00.00.0292 application has license build date of March 18, 2013." />
+  <Version Number="2.10.00.10" Date="04/15/2013" Notes="IB (IE6/PIE/HTML5 configurable) V 2.10.00.10 application has license  built date of  April 15, 2013" />
+  <Version Number="2.20.01.129" Date="04/16/2014" Notes="IB (IE6/PIE/HTML5 configurable) V 2.20.01.129 application has license  built date of  April 16, 2014" />
+  <Version Number="2.91.14.0078" Date="05/13/2016" Notes="EB (IE6/PIE/HTML5 configurable) V 2.91.14.0078 has a license build date of May 13, 2016" />
+</IB>
+</versiondates>
