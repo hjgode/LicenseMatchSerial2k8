@@ -24,6 +24,10 @@ namespace LicenseMatchSerial2k8
         private Label lbl_IBDate;
         private Label lbl_IBNotes;
         private Label label3;
+        private Label label4;
+        private TextBox txtGracedLicenseDay;
+        private Button btn_Copy;
+
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -64,6 +68,7 @@ namespace LicenseMatchSerial2k8
             this.txtGracedLicenseDay = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btn_Copy = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnSearch
@@ -86,6 +91,7 @@ namespace LicenseMatchSerial2k8
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(166, 23);
             this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "146110580XX";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
@@ -282,12 +288,25 @@ namespace LicenseMatchSerial2k8
             this.btn_Copy.UseVisualStyleBackColor = true;
             this.btn_Copy.Click += new System.EventHandler(this.btn_Copy_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox1.Location = new System.Drawing.Point(531, 148);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(98, 17);
+            this.checkBox1.TabIndex = 17;
+            this.checkBox1.Text = "show valid only";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckStateChanged += new System.EventHandler(this.checkBox1_CheckStateChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(794, 545);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.btn_Copy);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.listBox1);
@@ -317,6 +336,8 @@ namespace LicenseMatchSerial2k8
         }
 
         #endregion
+
+        private CheckBox checkBox1;
     }
 }
 

@@ -42,7 +42,7 @@ namespace VersionDates
         [XmlAttribute(AttributeName = "Date")]
         public string DateString { get; set; }
         [XmlIgnore]
-        public DateTime Date
+        public DateTime DateReleased
         {
             // 10/28/2008   month/day/year
             get {

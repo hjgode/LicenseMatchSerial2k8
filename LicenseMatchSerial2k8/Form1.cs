@@ -12,15 +12,16 @@ namespace LicenseMatchSerial2k8
     partial class Form1 : Form
     {
         List<VersionDates.Version> IB_versions = new List<VersionDates.Version>();
-        private TextBox txtGracedLicenseDay;
-        private Label label4;
         List<VersionDates.Version> ITE_versions = new List<VersionDates.Version>();
 
-        DateTime currentSerialLicenseDateGraced = new DateTime();
-        DateTime currentSerialLicenseDate = new DateTime();
+        List<VersionDates.Version> IB_versionsValid = new List<VersionDates.Version>();
+        List<VersionDates.Version> ITE_versionsValid = new List<VersionDates.Version>();
+
+        DateTime currentDeviceLicenseDateGraced = new DateTime();
+        DateTime currentDeviceLicenseDate = new DateTime();
         VersionDates.Version IB_latest = null;
-        private Button btn_Copy;
         VersionDates.Version ITE_latest = null;
+
         void LoadVersions()
         {
             if (!System.IO.File.Exists("VersionDates.xml"))
@@ -40,25 +41,25 @@ namespace LicenseMatchSerial2k8
                 listBox1.Items.Add(ib);
             }
         }
+        
+        void LoadVersionsValid()
+        {
+            getLatest(currentDeviceLicenseDateGraced);
+            listBox1.Items.Clear();
+            foreach (VersionDates.Version ite in ITE_versionsValid)
+            {
+                listBox1.Items.Add(ite);
+            }
+            foreach (VersionDates.Version ib in IB_versionsValid)
+            {
+                listBox1.Items.Add(ib);
+            }
+        }
+
         public Form1()
         {
             this.InitializeComponent();
             LoadVersions();
-            //try
-            //{
-            //    using (XmlReader xmlReader = XmlReader.Create("VersionDates.xml"))
-            //    {
-            //        while (xmlReader.Read())
-            //        {
-            //            if (xmlReader.IsStartElement() && xmlReader.Name == "Version")
-            //                this.listBox1.Items.Add((object)(xmlReader.GetAttribute(0) + "     " + xmlReader.GetAttribute(1) + "      " + xmlReader.GetAttribute(2)));
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    int num = (int)MessageBox.Show(ex.ToString());
-            //}
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -74,8 +75,8 @@ namespace LicenseMatchSerial2k8
             //reset
             IB_latest = null;
             ITE_latest = null;
-            currentSerialLicenseDateGraced = new DateTime();
-            currentSerialLicenseDate = new DateTime();
+            currentDeviceLicenseDateGraced = new DateTime();
+            currentDeviceLicenseDate = new DateTime();
 
             int serialJulianDay=0;
             int serialYear=2000;
@@ -101,7 +102,7 @@ namespace LicenseMatchSerial2k8
 
             DateTime dtLicense = new DateTime(serialLicenseYear, 1, 1).AddDays(serialJulianDay - 1);
             txtManufDate.Text = dtLicense.ToString("yyyy-MM-dd");
-            currentSerialLicenseDate = dtLicense;
+            currentDeviceLicenseDate = dtLicense;
 
             if (serialLicenseJulianDayGraced > 365)
             {
@@ -110,117 +111,36 @@ namespace LicenseMatchSerial2k8
             }
             DateTime dtLicenseGraced = new DateTime(serialLicenseYear, 1, 1).AddDays(serialLicenseJulianDayGraced - 1);
             txtGracedLicenseDay.Text= dtLicenseGraced.ToString("yyyy-MM-dd");
-            currentSerialLicenseDateGraced = dtLicenseGraced;
+            currentDeviceLicenseDateGraced = dtLicenseGraced;
 
-            //using (XmlReader xmlReader = XmlReader.Create("VersionDates.xml"))
-            //{
-            //    while (xmlReader.Read())
-            //    {
-            //        try
-            //        {
-            //            if (xmlReader.IsStartElement() && xmlReader.Name=="ITE")
-            //            {
-            //                if (xmlReader.Name == "Version")
-            //                {
-            //                    string attribute1 = xmlReader.GetAttribute(0);
-            //                    string attribute2 = xmlReader.GetAttribute(1);
-            //                    string attribute3 = xmlReader.GetAttribute(2);
-            //                    if (attribute2 != "NA")
-            //                    {
-            //                        int int16_3 = (int)Convert.ToInt16(attribute2.Substring(0, attribute2.IndexOf("/")));
-            //                        int int16_4 = (int)Convert.ToInt16(attribute2.Substring(attribute2.IndexOf("/") + 1, attribute2.LastIndexOf("/") - attribute2.IndexOf("/") - 1));
-            //                        DateTime dateTime = new DateTime((int)Convert.ToInt16(attribute2.Substring(attribute2.LastIndexOf("/") + 1)), int16_3, int16_4);
-            //                        if (serialLicenseYear > dateTime.Year)
-            //                        {
-            //                            this.lbl_ITEDate.Text = attribute2;
-            //                            this.lbl_ITENotes.Text = attribute3;
-            //                            this.lbl_ITEVersion.Text = attribute1;
-            //                        }
-            //                        else if (serialLicenseYear == dateTime.Year && serialLicenseJulianDay > dateTime.DayOfYear)
-            //                        {
-            //                            this.lbl_ITEDate.Text = attribute2;
-            //                            this.lbl_ITENotes.Text = attribute3;
-            //                            this.lbl_ITEVersion.Text = attribute1;
-            //                        }
-            //                    }
-            //                    else
-            //                    {
-            //                        this.lbl_ITEDate.Text = attribute2;
-            //                        this.lbl_ITENotes.Text = attribute3;
-            //                        this.lbl_ITEVersion.Text = attribute1;
-            //                    }
-            //                    this.lbl_ITEVersion.Visible = true;
-            //                    this.lbl_ITENotes.Visible = true;
-            //                    this.lbl_ITEDate.Visible = true;
-            //                }
-            //            }
-            //            //if (xmlReader.IsStartElement() && xmlReader.Name == "IB")
-            //            //{
-            //            //    if (xmlReader.Name == "Version")
-            //            //    {
-            //            //        string attribute1 = xmlReader.GetAttribute(0);
-            //            //        string attribute2 = xmlReader.GetAttribute(1);
-            //            //        string attribute3 = xmlReader.GetAttribute(2);
-            //            //        if (attribute2 != "NA")
-            //            //        {
-            //            //            int int16_3 = (int)Convert.ToInt16(attribute2.Substring(0, attribute2.IndexOf("/")));
-            //            //            int int16_4 = (int)Convert.ToInt16(attribute2.Substring(attribute2.IndexOf("/") + 1, attribute2.LastIndexOf("/") - attribute2.IndexOf("/") - 1));
-            //            //            DateTime dateTime = new DateTime((int)Convert.ToInt16(attribute2.Substring(attribute2.LastIndexOf("/") + 1)), int16_3, int16_4);
-            //            //            if (serialLicenseYear > dateTime.Year)
-            //            //            {
-            //            //                this.lbl_IBDate.Text = attribute2;
-            //            //                this.lbl_IBNotes.Text = attribute3;
-            //            //                this.lbl_IBVersion.Text = attribute1;
-            //            //            }
-            //            //            else if (serialLicenseYear == dateTime.Year && serialLicenseJulianDay > dateTime.DayOfYear)
-            //            //            {
-            //            //                this.lbl_IBDate.Text = attribute2;
-            //            //                this.lbl_IBNotes.Text = attribute3;
-            //            //                this.lbl_IBVersion.Text = attribute1;
-            //            //            }
-            //            //        }
-            //            //        else
-            //            //        {
-            //            //            this.lbl_IBDate.Text = attribute2;
-            //            //            this.lbl_IBNotes.Text = attribute3;
-            //            //            this.lbl_IBVersion.Text = attribute1;
-            //            //        }
-            //            //        this.lbl_IBVersion.Visible = true;
-            //            //        this.lbl_IBNotes.Visible = true;
-            //            //        this.lbl_IBDate.Visible = true;
-            //            //    }
-            //            //}
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            int num3 = (int)MessageBox.Show(ex.ToString());
-            //            break;
-            //        }
-            //    }
-            //}
-
+            getLatest(currentDeviceLicenseDateGraced);
             listBox1.Refresh();
-            getLatest(currentSerialLicenseDateGraced);
         }
 
         void getLatest(DateTime dtGraced)
         {
+            IB_versionsValid.Clear();
+            ITE_versionsValid.Clear();
+
             foreach(VersionDates.Version ib in IB_versions)
             {
-                if (ib.Date <= dtGraced)
+                if (ib.DateReleased <= dtGraced)
                 {
+                    IB_versionsValid.Add(ib);
                     if (IB_latest == null)
                         IB_latest = ib;
-                    else if (IB_latest.Date < ib.Date)
+                    else if (IB_latest.DateReleased < ib.DateReleased)
                         IB_latest = ib;
                 }
             }
             foreach (VersionDates.Version ite in ITE_versions)
             {
-                if (ite.Date <= dtGraced) { 
+                if (ite.DateReleased <= dtGraced) {
+                    System.Diagnostics.Debug.WriteLine(ite.DateReleased.ToString("dd-MM-yyyy") + " <= " + dtGraced.ToString("dd-MM-yyyy") + ":\n\t Add valid: " + ite.ToString());
+                    ITE_versionsValid.Add(ite);
                     if (ITE_latest == null)
                         ITE_latest = ite;
-                    else if (ITE_latest.Date < ite.Date)
+                    else if (ITE_latest.DateReleased < ite.DateReleased)
                         ITE_latest = ite;
                 }
             }
@@ -263,20 +183,23 @@ namespace LicenseMatchSerial2k8
 
             VersionDates.Version currentItem = (VersionDates.Version)listBox1.Items[e.Index];
             //is the device date before the software release date?
-            if (currentSerialLicenseDateGraced.Year > currentItem.Date.Year)
+            if (currentItem.DateReleased <= currentDeviceLicenseDateGraced)
             {
                 myBrush = brushGreen;
                 if (currentItem.Notes.StartsWith("IB") || currentItem.Notes.StartsWith("EB"))
-                    IB_latest = currentItem;
+                {
+                    if(IB_latest==null)
+                        IB_latest = currentItem;
+                    else if(IB_latest.DateReleased < currentItem.DateReleased)//current is newer entry?
+                        IB_latest = currentItem;
+                }
                 if (currentItem.Notes.StartsWith("TE") || currentItem.Notes.StartsWith("ITE"))
-                    ITE_latest = currentItem;
-            }
-            else if (currentSerialLicenseDateGraced.Year == currentItem.Date.Year && currentItem.Date.DayOfYear > currentItem.Date.DayOfYear) { 
-                myBrush = brushGreen;
-                if (currentItem.Notes.StartsWith("IB") || currentItem.Notes.StartsWith("EB"))
-                    IB_latest = currentItem;
-                if (currentItem.Notes.StartsWith("TE") || currentItem.Notes.StartsWith("ITE"))
-                    ITE_latest = currentItem;
+                {
+                    if (ITE_latest == null)
+                        ITE_latest = currentItem;
+                    else if (ITE_latest.DateReleased < currentItem.DateReleased)//current is newer entry?
+                        ITE_latest = currentItem;
+                }
             }
             else
                 myBrush = brushGray;
@@ -300,6 +223,14 @@ namespace LicenseMatchSerial2k8
                 IB_latest.ToString() + "; \r\nTE/ITE: " + ITE_latest.ToString(),TextDataFormat.UnicodeText);
             System.Diagnostics.Debug.WriteLine("Clipboard=\r\n" + textBox1.Text + ", graced license date: " + txtManufDate.Text + ", \r\nIB/EB: " +
                 IB_latest.ToString() + "; \r\nTE/ITE: " + ITE_latest.ToString());
+        }
+
+        private void checkBox1_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+                LoadVersionsValid();
+            else
+                LoadVersions();
         }
     }
 }
